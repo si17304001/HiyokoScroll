@@ -1,0 +1,27 @@
+create table thread(
+ thread_id number(7) constraint pk_thread_id primary key
+,thread_name varchar2(50) not null
+,thread_created_user varchar2(15) default 'guest'
+,thread_created_date date default sysdate not null
+);
+
+create table res(
+ res_id number(7) constraint pk_res_id primary key
+,res_name varchar2(50) not null
+,thread_id number(7) constraint fk_thread_id references thread(thread_id) on delete cascade
+,res_created_user varchar2(15) default 'guest'
+,res_created_date date default sysdate not null
+,res_good number(3) default 0
+,res_bad number(3) default 0
+);
+
+create table userAccount(
+ user_id number(7) constraint pk_user_id primary key
+,user_name varchar2(15) not null constraint ck_name check(user_name <> 'guest')
+,user_pass varchar2(15) not null
+,email varchar2(30) deault set null
+);
+
+create sequence thread_seq start with 1 increment by 1;
+create sequence res_seq start with 1 increment by 1;
+create sequence user_seq start with 1 increment by 1;
