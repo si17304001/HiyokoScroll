@@ -19,7 +19,6 @@ create table userAccount(
  user_id number(7) constraint pk_user_id primary key
 ,user_name varchar2(15) not null constraint ck_name check(user_name <> 'guest')
 ,user_pass varchar2(15) not null
-,email varchar2(30) deault set null
 );
 
 create sequence thread_seq start with 1 increment by 1;
