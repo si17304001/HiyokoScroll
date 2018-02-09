@@ -39,7 +39,6 @@ public class ThreadServlet extends HttpServlet{
 	
 	
 	
-	//ì«Ç›çûÇ›
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 	throws ServletException,IOException{
 		req.setCharacterEncoding("Windows-31J");
