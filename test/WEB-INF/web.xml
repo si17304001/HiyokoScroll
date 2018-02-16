@@ -1,0 +1,50 @@
+<web-app>
+  <servlet>
+    <servlet-name>ThreadServlet</servlet-name>
+    <servlet-class>ThreadServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ThreadServlet</servlet-name>
+    <url-pattern>/ThreadServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CA</servlet-name>
+    <servlet-class>CreateAccountServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CA</servlet-name>
+    <url-pattern>/ca</url-pattern>
+  </servlet-mapping>
+  
+ <servlet>
+    <servlet-name>ResServlet</servlet-name>
+    <servlet-class>ResServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ResServlet</servlet-name>
+    <url-pattern>/ResServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>res</servlet-name>
+  	<jsp-file>/res.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>res</servlet-name>
+  	<url-pattern>/res</url-pattern>
+  </servlet-mapping>
+</web-app>
