@@ -11,8 +11,7 @@ create table res(
 ,thread_id number(7) constraint fk_thread_id references thread(thread_id) on delete cascade
 ,res_user varchar2(15) default 'guest'
 ,res_date date default sysdate not null
-,res_good number(3) default 0
-,res_bad number(3) default 0
+,res_like number(3) default 0
 );
 
 create table userAccount(
