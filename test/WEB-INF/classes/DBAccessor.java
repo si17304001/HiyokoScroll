@@ -138,7 +138,7 @@ public class DBAccessor{
 	public void writeRes(String rcontent,String user, String tID){//<--------------
 		try{
 			String sql=
-			"insert into res(res_id, res_content, res_user) values(res_seq.nextval, '"+rcontent+"', "+tID+", '"+user+"')";
+			"insert into res(res_id, res_content, thread_id, res_user) values(res_id_seq.nextval, '"+rcontent+"', "+tID+", '"+user+"')";
 			
 			getConnection();
 			
