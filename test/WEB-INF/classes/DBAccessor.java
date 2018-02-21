@@ -1,3 +1,6 @@
+package DBA;
+import Bean.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -5,6 +8,7 @@ import java.sql.Statement;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+
 
 
 //select ResultSet rs=st.executeQuery
@@ -19,6 +23,7 @@ public class DBAccessor{
 			cn=DriverManager.getConnection
 	 	 	 ("jdbc:oracle:thin:@localhost:1521:orcl","info","pro");
 			System.out.println("DBConected");
+			cn.setAutoCommit(false);
 			
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -50,6 +55,7 @@ public class DBAccessor{
 			ResultSet rs=st.executeQuery(sql);
 			
 			while(rs.next()){
+				System.out.println("rs.next()==true");
 				ThreadBean tb=new ThreadBean();
 				System.out.println(rs.getString(1));
 				tb.setID(rs.getString(1));
@@ -75,7 +81,7 @@ public class DBAccessor{
 		
 		ArrayList<ResBean> resList=new ArrayList<>();
 		
-		String sql="select res_content, res_user, res_date from res where thread_id = "+ThreadID;
+		String sql="select res_content, res_user, res_date, res_like from res where thread_id = "+ThreadID;
 		try{
 			
 			getConnection();
@@ -84,7 +90,6 @@ public class DBAccessor{
 			
 			ResultSet rs=st.executeQuery(sql);
 			
-			
 			while(rs.next()){
 				System.out.println("rs.next()=true");
 				ResBean rb=new ResBean();
@@ -92,8 +97,7 @@ public class DBAccessor{
 				rb.setResContent(rs.getString("res_content"));
 				rb.setResUser(rs.getString(2));
 				rb.setResDate(rs.getString(3));
-				//rb.setGood(rs.getString(4));
-				//rb.setBad(rs.getString(5));
+				rb.setLike(rs.getString(4));
 				
 				resList.add(rb);
 			}
@@ -108,45 +112,101 @@ public class DBAccessor{
 			
 		return resList;
 	}
-	/*public void writeThread(String tname,String user){
+	public void writeThread(String tname,String user){
+		
+		String sql=
+			"insert into thread(thread_id, thread_name, thread_user) values(thread_id_seq.nextval,'"+tname+"', '"+user+"')";
+		
 		try{
-			String sql=
-			"insert into thread(thread_id, thread_name) values(thread_seq.nextval,'')";
-			getConnection();
-			
-			Statement st=cc.createStatement();
-			st.executeUpdate(sql);
-		}
-		catch(SQLException e){}
-		catch(Exception e){}
-	}
-	public void writeRes(String rname,String user, int tID){
-		try{
-			String sql=
-			"insert into res(res_id, res_content, res_user) values(res_seq.nextval,'"+rname+"',"+tID+",'"+user+"')";
-			
-			
-			getConnection();
-			
-			Statement st=cc.createStatement();
-			st.executeUpdate(sql);
-		}
-		catch(SQLException e){}
-		catch(Exception e){}
-	}*/
-	public void addAccount(int id, String uname, String pass){
-		try{
-			String sql="insert into useraccount values("+id+",'"+uname+"','"+pass+"')";
-			
 			
 			getConnection();
 			
 			Statement st=cn.createStatement();
-			
 			st.executeUpdate(sql);
+			System.out.println("updated");
+			
+			cn.commit();
+			
+			st.close();
+			
+			cn.close();
 			
 		}
 		catch(SQLException e){e.printStackTrace();}
 		catch(Exception e){e.printStackTrace();}
 	}
+	public void writeRes(String rcontent,String user, String tID){//<--------------
+		try{
+			String sql=
+			"insert into res(res_id, res_content, res_user) values(res_seq.nextval, '"+rcontent+"', "+tID+", '"+user+"')";
+			
+			getConnection();
+			
+			Statement st=cn.createStatement();
+			st.executeUpdate(sql);
+			
+			cn.commit();
+			
+			st.close();
+			
+			cn.close();
+			
+		}
+		catch(SQLException e){e.printStackTrace();}
+		catch(Exception e){e.printStackTrace();}
+	}
+	
+	//User
+
+	public String getUser(String name, String pass){
+		
+		String sql="select user_name from useraccount where user_name = '"+name+"' and user_pass = '"+pass+"'";
+		
+		UserBean ub=new UserBean();
+		try{
+			getConnection();
+
+			Statement st=cn.createStatement();
+
+			ResultSet rs=st.executeQuery(sql);
+			
+			try{
+				rs.next();
+				System.out.println(rs.getString("user_name"));
+				ub.setUserName(rs.getString(1));
+			}catch(SQLException e){e.printStackTrace();}
+				catch(Exception e){e.printStackTrace();}
+			
+			cn.commit();
+			
+			st.close();
+			
+			cn.close();
+			
+		}catch(SQLException e){e.printStackTrace();}
+		catch(Exception e){e.printStackTrace();}
+		
+		return ub.getUserName();
+	}
+	public void addAccount(String uname, String pass){
+		
+		String sql="insert into useraccount values(user_id_seq.nextval, '"+uname+"','"+pass+"')";
+		try{
+
+			getConnection();
+			
+			Statement st=cn.createStatement();
+			
+			st.executeUpdate(sql);
+
+			cn.commit();
+			
+			st.close();
+			
+			cn.close();
+		}
+		catch(SQLException e){e.printStackTrace();}
+		catch(Exception e){e.printStackTrace();}
+	}
+	
 }

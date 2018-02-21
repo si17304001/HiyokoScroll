@@ -1,12 +1,13 @@
+package Bean;
+
 public class ResBean{
 	private String ID;
 	private String resContent;
 	private String resUser;
 	private String resDate;
-	private String Good;
-	private String Bad;
+	private String likeCount;
 	
-	public String getResName(){
+	public String getResContent(){
 		return resContent;
 	}
 	public String getResUser(){
@@ -15,11 +16,8 @@ public class ResBean{
 	public String getResDate(){
 		return resDate;
 	}
-	public String getGood(){
-		return Good;
-	}
-	public String getBad(){
-		return Bad;
+	public String getLike(){
+		return like;
 	}
 	public void setResContent(String resContent){
 		this.resContent=resContent;
@@ -30,10 +28,10 @@ public class ResBean{
 	public void setResDate(String resDate){
 		this.resDate=resDate;
 	}
-	public void setGood(String Good){
-		this.Good=Good;
+	public void setLikePlus(int p){
+		
 	}
-	public void setBad(String Bad){
-		this.Bad=Bad;
+	public void setLikeMinus(int m){
+		
 	}
 }

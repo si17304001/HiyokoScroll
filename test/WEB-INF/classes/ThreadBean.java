@@ -1,7 +1,9 @@
+package Bean;
+
 public class ThreadBean{
 	private String ID;
 	private String threadName;
-	private String userName;
+	private String threadUser;
 	private String threadDate;
 	
 	public String getID(){
@@ -10,8 +12,8 @@ public class ThreadBean{
 	public String getThreadName(){
 		return threadName;
 	}
-	public String getUserName(){
-		return userName;
+	public String getThreadUser(){
+		return threadUser;
 	}
 	public String getThreadDate(){
 		return threadDate;
@@ -22,8 +24,8 @@ public class ThreadBean{
 	public void setThreadName(String Threadname){
 		this.threadName=Threadname;
 	}
-	public void setUserName(String Username){
-		this.userName=Username;
+	public void setUserName(String threadUser){
+		this.threadUser=threadUser;
 	}
 	public void setThreadDate(String date){
 		this.threadDate=date;

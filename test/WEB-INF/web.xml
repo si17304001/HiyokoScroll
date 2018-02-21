@@ -47,4 +47,22 @@
   	<servlet-name>res</servlet-name>
   	<url-pattern>/res</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>lg</servlet-name>
+  	<jsp-file>/login.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>lg</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>lgs</servlet-name>
+  	<servlet-class>LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>lgs</servlet-name>
+  	<url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
