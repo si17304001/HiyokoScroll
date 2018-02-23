@@ -12,8 +12,6 @@ public class ThreadServlet extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 	throws IOException, ServletException{
 		
-		req.setCharacterEncoding("Windows-31J");
-		
 		Executer ex=new Executer();
 		
 		try{
@@ -57,11 +55,11 @@ public class ThreadServlet extends HttpServlet{
 			
 			dis.forward(req, res);
 		}else{
-		ex.writeThread(Tname,user);
-		
-		RequestDispatcher dis = req.getRequestDispatcher("/index");
-		
-		dis.forward(req, res);
+			ex.writeThread(Tname,user);
+			
+			RequestDispatcher dis = req.getRequestDispatcher("/index");
+			
+			dis.forward(req, res);
 		}
 		}catch(Exception e){
 			e.printStackTrace();

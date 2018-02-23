@@ -13,6 +13,7 @@ public class CreateAccountServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 	throws IOException, ServletException{
 		req.setCharacterEncoding("Windows-31J");
+		
 		String u = req.getParameter("user");
 		String p = req.getParameter("pass");
 		
