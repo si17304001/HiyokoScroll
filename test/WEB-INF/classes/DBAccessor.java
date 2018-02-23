@@ -44,7 +44,7 @@ public class DBAccessor{
 		
 		ArrayList<ThreadBean> thList=new ArrayList<>();
 		
-		String sql="select * from thread order by thread_date desc";
+		String sql="select thread_id, thread_name, thread_user, thread_date from thread order by thread_date desc";
 		
 		try{
 			
@@ -54,17 +54,16 @@ public class DBAccessor{
 			
 			ResultSet rs=st.executeQuery(sql);
 			
-			while(rs.next()){
-				System.out.println("rs.next()==true");
+			for(int i = 1; rs.next(); i++){
+				System.out.println("thread rs.next()==true");
 				ThreadBean tb=new ThreadBean();
 				System.out.println(rs.getString(1));
+				tb.setNo(i);
 				tb.setID(rs.getString(1));
 				tb.setThreadName(rs.getString(2));
 				tb.setUserName(rs.getString(3));
 				tb.setThreadDate(rs.getString(4));
-				System.out.println("seted");
 				thList.add(tb);
-				System.out.println("addtolist");
 			}
 			cn.commit();
 			
@@ -81,7 +80,7 @@ public class DBAccessor{
 		
 		ArrayList<ResBean> resList=new ArrayList<>();
 		
-		String sql="select res_content, res_user, res_date, res_like from res where thread_id = "+ThreadID;
+		String sql="select res_id, res_content, res_user, res_date, res_like from res where thread_id = "+ThreadID;
 		try{
 			
 			getConnection();
@@ -90,14 +89,16 @@ public class DBAccessor{
 			
 			ResultSet rs=st.executeQuery(sql);
 			
-			while(rs.next()){
-				System.out.println("rs.next()=true");
+			for(int i = 1; rs.next(); i++){
+				System.out.println("res rs.next()=true");
 				ResBean rb=new ResBean();
-				System.out.println(rs.getString("res_content"));
-				rb.setResContent(rs.getString("res_content"));
-				rb.setResUser(rs.getString(2));
-				rb.setResDate(rs.getString(3));
-				rb.setLike(rs.getString(4));
+				
+				rb.setNo(i);
+				rb.setResID(rs.getString(1));
+				rb.setResContent(rs.getString(2));
+				rb.setResUser(rs.getString(3));
+				rb.setResDate(rs.getString(4));
+				rb.setLike(rs.getString(5));
 				
 				resList.add(rb);
 			}
@@ -206,6 +207,26 @@ public class DBAccessor{
 			cn.close();
 		}
 		catch(SQLException e){e.printStackTrace();}
+		catch(Exception e){e.printStackTrace();}
+	}
+
+	public void setLike(String rid){
+		String sql="update res set res_like = res_like + 1 where res_id = "+rid;
+		
+		try{
+		getConnection();
+
+		Statement st=cn.createStatement();
+
+		st.executeUpdate(sql);
+
+		cn.commit();
+			
+		st.close();
+			
+		cn.close();
+
+		}catch(SQLException e){e.printStackTrace();}
 		catch(Exception e){e.printStackTrace();}
 	}
 	

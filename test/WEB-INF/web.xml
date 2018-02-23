@@ -65,4 +65,14 @@
   	<servlet-name>lgs</servlet-name>
   	<url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+
+ <servlet>
+    <servlet-name>like</servlet-name>
+    <servlet-class>LikeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>like</servlet-name>
+    <url-pattern>/LikeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -31,5 +31,10 @@ public class Executer{
 	public String getUser(String uname, String pass){
 		DBAccessor dba = new DBAccessor();
 		return dba.getUser(uname, pass);
+	} 
+	
+	public void Like(String like){
+		DBAccessor dba=new DBAccessor();
+		dba.setLike(like);
 	}
 }

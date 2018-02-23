@@ -29,6 +29,7 @@ public class ThreadServlet extends HttpServlet{
 		}
 	}
 	
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 	throws IOException, ServletException{
 		
@@ -43,10 +44,15 @@ public class ThreadServlet extends HttpServlet{
 		}else{}
 		
 		Executer ex=new Executer();
-		System.out.println(Tname);
-		System.out.println(user);
+		System.out.println("Tname = "+Tname);
+		System.out.println("user = "+user);
 	try{
 		if(Tname == ""){
+			
+			req.setAttribute("thread",ex.getThread());
+			
+			req.setAttribute("m","please enter thread name");
+			
 			RequestDispatcher dis = req.getRequestDispatcher("/index");
 			
 			dis.forward(req, res);

@@ -12,8 +12,7 @@
     <nav>
       <div class="in">
       <ul class="menu">
-        <a href="">ホームへ</a>
-        <a><img src="top.png"width=50%><a>
+        <img src="top.png"width=50%>
       <a href="#"> <img src="suretate.png"width=7% align="right" margin=1%></a>
         
       </ul>
@@ -22,7 +21,7 @@
     
     
     <% if(session.getAttribute("uname")==null){ %>
-		<a href="login">login</a><a href="Register.html">New Account!</a>
+		<a href="login">login</a><br/><a href="Register.html">New Account!</a>
 	<% }else{ %>
 		${sessionScope.uname}
 		<form method="get" action="LoginServlet">
@@ -34,17 +33,17 @@
 	
 	
 <table>
-		<tr><th>ID</th><th>スレッド名</th><th>ユーザー名</th><th>Date</th></tr>
+		<tr><th>No</th><th>ID</th><th>スレッド名</th><th>ユーザー名</th><th>Date</th></tr>
 		<% if(request.getAttribute("thread")==null){
 				response.sendRedirect("ThreadServlet");} %>
 		<c:forEach var="thread" items="${thread}">
-			<tr><td>${thread.ID}</td><td><a href="ResServlet?id=${thread.ID}" method='get'>${thread.threadName}</a></td><td>${thread.getThreadUser()}</td><td>${thread.threadDate}</td></tr>
+			<tr><td>${thread.getNo()}</td><td>${thread.ID}</td><td><a href="ResServlet?id=${thread.ID}" method='get'>${thread.threadName}</a></td><td>${thread.getThreadUser()}</td><td>${thread.threadDate}</td></tr>
 		</c:forEach>
 		
 	</table><hr/></p>
 	
 	<form method="post" action="ThreadServlet">
-	<input type="text" name="Tname"/><input type="submit" value="スレッドを立てる">
+	<input type="text" name="Tname"/><input type="submit" value="スレッドを立てる"><span style='color:red'>${m}</span>
 	</form>
 </body>
 

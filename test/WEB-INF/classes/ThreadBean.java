@@ -1,11 +1,15 @@
 package Bean;
 
 public class ThreadBean{
+	private int No;
 	private String ID;
 	private String threadName;
 	private String threadUser;
 	private String threadDate;
 	
+	public int getNo(){
+		return No;
+	}
 	public String getID(){
 		return ID;
 	}
@@ -17,6 +21,9 @@ public class ThreadBean{
 	}
 	public String getThreadDate(){
 		return threadDate;
+	}
+	public void setNo(int No){
+		this.No = No;
 	}
 	public void setID(String ID){
 		this.ID = ID;
