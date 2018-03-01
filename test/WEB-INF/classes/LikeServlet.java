@@ -29,5 +29,4 @@ public class LikeServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
-		
 }

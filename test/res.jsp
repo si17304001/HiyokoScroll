@@ -40,11 +40,11 @@
 			</form>
 			<% session.setAttribute("username",session.getAttribute("uname")); %>
 		<% } %>
-	   
-	   <form action='ResServlet?id=${param.id}'  method="post">
-	   		<textarea cols="50" rows="5" name="content"></textarea>
-	   		<input type="hidden" name="TID" value='${param.id}'><br/>
-	   		<input type="submit" value="post"><span style='color:red'>${m}</span>
-	   </form>
+		
+		<form action='ResServlet?id=${param.id}'  method="post">
+		<textarea cols="50" rows="5" name="content"></textarea>
+			<input type="hidden" name="TID" value='${param.id}'><br/>
+			<input type="submit" value="post"><span style='color:red'>${m}</span>
+		</form>
 </body>
 </html>
