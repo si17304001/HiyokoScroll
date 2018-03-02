@@ -4,24 +4,24 @@
 
 <html>
 <head>
-	<title>たいぽんちゃんねる</title>
+	<title>Thaipon</title>
 	<link rel="stylesheet" href="style.css" type="text/css" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
-    <nav>
+    
       <div class="in">
       <ul class="menu">
-        <img src="top.png"width=50%>
+        <img src="top.png"width=40%>
       <a href="#"> <img src="suretate.png"width=7% align="right" margin=1%></a>
         
       </ul>
     </div>
-    </nav>
+    
     
     
     <% if(session.getAttribute("uname")==null){ %>
-		<a href="login">login</a><br/><a href="Register.html">New Account!</a>
+		<h3><a href="login">ログイン</a><br/><a href="Register.html">新規アカウント作成</a></h3>
 	<% }else{ %>
 		${sessionScope.uname}
 		<form method="get" action="LoginServlet">
@@ -37,14 +37,15 @@
 		<% if(request.getAttribute("thread")==null){
 				response.sendRedirect("ThreadServlet");} %>
 		<c:forEach var="thread" items="${thread}">
-			<tr><td>${thread.getNo()}</td><td>${thread.ID}</td><td><a href="ResServlet?id=${thread.ID}" method='get'>${thread.threadName}</a></td><td>${thread.getThreadUser()}</td><td>${thread.threadDate}</td></tr>
+			<tr><td>${thread.getNo()}&nbsp;&nbsp;</td><td>${thread.ID}&nbsp;&nbsp;</td><td><a href="ResServlet?id=${thread.ID}" method='get'>${thread.threadName}</a>&nbsp;&nbsp;</td><td>${thread.getThreadUser()}</td>&nbsp;<td>${thread.threadDate}</td>&nbsp;</tr>
 		</c:forEach>
 		
-	</table><hr/></p>
+	</table><hr/>
 	
-	<form method="post" action="ThreadServlet">
-	<input type="text" name="Tname"/><input type="submit" value="スレッドを立てる"><span style='color:red'>${m}</span>
-	</form>
+	<center><form method="post" action="ThreadServlet">
+	<h2>新しいスレッドを作成する</h2>
+	<input type="text" name="Tname"size="40"/><br/><input type="submit" value="作成"><span style='color:red'>${m}</span>
+	</form></center>
 </body>
 
 </html>

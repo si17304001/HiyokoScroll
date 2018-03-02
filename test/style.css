@@ -1,4 +1,5 @@
-
+a:link { 
+ }
 .menu {
   display: table;
   /*position: fixed;*/
@@ -11,13 +12,54 @@
 
 }
 
+h1 {
+ margin-left: auto;
+ margin-right: auto;
+ 	color: #ffffff;
+	font-family: sans-serif;
+	line-height: 4;
+}
+h2 {
+ 	color: #ffffff;
+	font-family: sans-serif;
+	line-height: 2;
+}
+h3 {
+ 	color: #ffffff;
+	font-family: sans-serif;
+	
+}
+input[type="submit"] {
+
+
+  position: relative;
+  margin-top: 20;
+  background-color:#69aaff;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 30px;
+
+  transition: none;
+
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+input[type="submit"]:active {
+  top: 3px;
+  box-shadow: none;
+}
+
+
+
+
+
 table {
  margin-left: auto;
  margin-right: auto;
  	color: #ffffff;
 
 	font-family: sans-serif;
-	font-size: 100%;
+	font-size: 130%;
 	line-height: 2;
 }
 p {
