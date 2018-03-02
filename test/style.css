@@ -1,4 +1,10 @@
-a:link { 
+a { 
+	color:#69aaff;
+	text-decoration: none
+ }
+ 
+ a:hover{
+ 	color:#fff;
  }
 .menu {
   display: table;
@@ -37,7 +43,7 @@ input[type="submit"] {
   background-color:#69aaff;
   border-radius: 4px;
   color: #fff;
-  font-size: 30px;
+
 
   transition: none;
 
@@ -69,3 +75,4 @@ body {
 		margin:0px;
 		background-color: #535c75;
 	}
+	
