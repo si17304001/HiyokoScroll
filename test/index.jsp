@@ -41,7 +41,11 @@
     <nav>
       <div class="in">
       <ul class="menu">
+<<<<<<< HEAD
         <a href="index"><img src="top.png"width=40%></a>
+=======
+        <a href="index"><img src="top.png"width=50%></a>
+>>>>>>> 83e6d6ec6ae400a38f0790ee16c7a7a47fd96353
       <a href="#"> <img src="suretate.png"width=7% align="right" margin=1%></a>
         
       </ul>
@@ -49,7 +53,7 @@
     </nav>
     
     <% if(session.getAttribute("uname")==null){ %>
-		<h3><a href="login">ログイン</a><br/><a href="Register.html">新規アカウント作成</a></h3>
+		<a href="login">ログイン</a><br/><a href="Register.html">新規アカウント作成</a>
 	<% }else{ %>
 		${sessionScope.uname}
 		<form method="get" action="LoginServlet">
@@ -60,7 +64,11 @@
 	
 	<center><div id="pref-search">
 		<select id ="tag-select" class ="form-control">
+<<<<<<< HEAD
 			<option value ="">全て表示</option>
+=======
+			<option value ="">絞り込みクリア</option>
+>>>>>>> 83e6d6ec6ae400a38f0790ee16c7a7a47fd96353
 			<option value ="ゲーム">ゲーム</option>
 			<option value ="雑談">雑談</option>
 			<option value ="アニメ">アニメ</option>
@@ -70,7 +78,11 @@
 	
 <table id="thread">
 	
+<<<<<<< HEAD
 	<tr><th>No</th><th>ID</th><th>スレッド名</th><th>ユーザー名</th><th>日付</th><th>タグ</th></tr>
+=======
+	<tr><th>No</th><th>ID</th><th>スレッド名</th><th>ユーザー名</th><th>Date</th><th>TAG</th></tr>
+>>>>>>> 83e6d6ec6ae400a38f0790ee16c7a7a47fd96353
 		<% if(request.getAttribute("thread")==null){
 				response.sendRedirect("ThreadServlet");} %>
 	<tbody><c:forEach var="thread" items="${thread}">
@@ -96,7 +108,11 @@
 		<input type="radio" name="tag" value="アニメ">アニメ
 		<input type="radio" name="tag" value="雑談">雑談
 		<input type="radio" name="tag" value="その他" checked="checked">その他-->
+<<<<<<< HEAD
 		<input type="text" name="Tname"/>&nbsp;<input type="submit" value="作成"><span style='color:red'>${m}</span>
+=======
+		<input type="text" name="Tname"/><input type="submit" value="スレッドを立てる"><span style='color:red'>${m}</span>
+>>>>>>> 83e6d6ec6ae400a38f0790ee16c7a7a47fd96353
 	</form></center>
 </body>
 
