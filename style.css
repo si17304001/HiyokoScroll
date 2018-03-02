@@ -11,6 +11,42 @@
 
 }
 
+h1 {
+ margin-left: auto;
+ margin-right: auto;
+ 	color: #ffffff;
+	font-family: sans-serif;
+	line-height: 4;
+}
+h2 {
+ 	color: #ffffff;
+	font-family: sans-serif;
+	line-height: 2;
+}
+input[type="submit"] {
+
+
+  position: relative;
+  margin-top: 20;
+  background-color:#69aaff;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 120%;
+
+  transition: none;
+
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+input[type="submit"]:active {
+  top: 3px;
+  box-shadow: none;
+}
+
+
+
+
+
 table {
  margin-left: auto;
  margin-right: auto;
@@ -21,7 +57,7 @@ table {
 	line-height: 2;
 }
 p {
-	font-size:130%;
+
 }
 body {
 		margin:0px;
