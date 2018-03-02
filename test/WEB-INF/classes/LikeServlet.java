@@ -14,11 +14,12 @@ public class LikeServlet extends HttpServlet{
 		
 		Executer ex=new Executer();
 		
-		String l = req.getParameter("rID");
+		String rID = req.getParameter("rID");
 		String ThID = req.getParameter("id");
+		String like = req.getParameter("like");
 		
 		try{
-			ex.Like(l);
+			ex.Like(rID,like);
 			
 			req.setAttribute("res",ex.getRes(ThID));
 			
@@ -29,4 +30,5 @@ public class LikeServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
+		
 }

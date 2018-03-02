@@ -7,7 +7,7 @@
 	</head>
 	<body>
 	<ul class="menu">
-        <img src="top.png"width=40%>
+        <a href="index"><img src="top.png"width=40%></a>
       </ul>
       <center><h1>ÉçÉOÉCÉì</h1>
 		<form method="post" action="LoginServlet">

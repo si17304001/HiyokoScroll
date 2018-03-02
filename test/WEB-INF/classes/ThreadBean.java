@@ -6,6 +6,7 @@ public class ThreadBean{
 	private String threadName;
 	private String threadUser;
 	private String threadDate;
+	private String Tag;
 	
 	public int getNo(){
 		return No;
@@ -22,6 +23,9 @@ public class ThreadBean{
 	public String getThreadDate(){
 		return threadDate;
 	}
+	public String getTag(){
+		return Tag;
+	}
 	public void setNo(int No){
 		this.No = No;
 	}
@@ -36,5 +40,8 @@ public class ThreadBean{
 	}
 	public void setThreadDate(String date){
 		this.threadDate=date;
+	}
+	public void setTag(String Tag){
+		this.Tag = Tag;
 	}
 }

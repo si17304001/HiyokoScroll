@@ -35,6 +35,12 @@ public class ResServlet extends HttpServlet{
 		String content = req.getParameter("content");
 		String user = null;
 		String T = req.getParameter("TID");
+		
+		content = content.replaceAll("\n","<br>");
+		content = content.replaceAll("\t"," ");
+		content = content.replaceAll("<br>","");
+		content = content.replaceAll("<","");
+		
 		try{
 			if(session.getAttribute("username") != null){
 				user = session.getAttribute("username").toString();

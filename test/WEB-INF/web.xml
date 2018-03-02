@@ -70,9 +70,9 @@
     <servlet-name>like</servlet-name>
     <servlet-class>LikeServlet</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>like</servlet-name>
     <url-pattern>/LikeServlet</url-pattern>
   </servlet-mapping>
-  
 </web-app>

@@ -12,6 +12,8 @@ public class ThreadServlet extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 	throws IOException, ServletException{
 		
+		req.setCharacterEncoding("Windows-31J");
+		
 		Executer ex=new Executer();
 		
 		try{
@@ -20,7 +22,6 @@ public class ThreadServlet extends HttpServlet{
 			RequestDispatcher dis = req.getRequestDispatcher("/index");
 			
 			dis.forward(req, res);
-		
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Thread‚Ìˆê——•\Ž¦‚Å—áŠO");
@@ -36,7 +37,7 @@ public class ThreadServlet extends HttpServlet{
 		String user = null;
 		
 		String Tname = req.getParameter("Tname");
-		
+		String tag = req.getParameter("tag");
 		if(session.getAttribute("username") != null){
 			user = session.getAttribute("username").toString();
 		}else{}
@@ -55,7 +56,7 @@ public class ThreadServlet extends HttpServlet{
 			
 			dis.forward(req, res);
 		}else{
-			ex.writeThread(Tname,user);
+			ex.writeThread(Tname,user,tag);
 			
 			RequestDispatcher dis = req.getRequestDispatcher("/index");
 			

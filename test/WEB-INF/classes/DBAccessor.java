@@ -40,31 +40,30 @@ public class DBAccessor{
 		}
 		return this.cn;
 	}
-	public ArrayList<ThreadBean> getThread(){//スレッドを読み込み
+	public ArrayList<ThreadBean> getThread(){
 		
 		ArrayList<ThreadBean> thList=new ArrayList<>();
 		
-		String sql="select thread_id, thread_name, thread_user, thread_date from thread order by thread_date desc";
+		String sql="select thread_id, thread_name, thread_user, thread_date, tag from thread order by thread_date desc";
 		
 		try{
 			
-			getConnection();//DBをconectする。
+			getConnection();
 			
 			Statement st=cn.createStatement();
 			
 			ResultSet rs=st.executeQuery(sql);
 			
-			for(int i = 1; rs.next(); i++){//スレッドがある時=true
+			for(int i = 1; rs.next(); i++){
 				System.out.println("thread rs.next()==true");
 				ThreadBean tb=new ThreadBean();
 				System.out.println(rs.getString(1));
-				tb.setNo(i);//count数
-				//読み込た値をbeanにsetすう
+				tb.setNo(i);
 				tb.setID(rs.getString(1));
 				tb.setThreadName(rs.getString(2));
 				tb.setUserName(rs.getString(3));
 				tb.setThreadDate(rs.getString(4));
-				//setした値arraylist に入れる
+				tb.setTag(rs.getString(5));
 				thList.add(tb);
 			}
 			cn.commit();
@@ -75,14 +74,14 @@ public class DBAccessor{
 		}
 		catch(SQLException e){e.printStackTrace();}
 		catch(Exception e){e.printStackTrace();}
-		//arraylist
+		
 		return thList;
 	}
-	public ArrayList<ResBean> getRes(String ThreadID){//threadid で検索　レスを読み込み 
+	public ArrayList<ResBean> getRes(String ThreadID){
 		
 		ArrayList<ResBean> resList=new ArrayList<>();
 		
-		String sql="select res_id, res_content, res_user, res_date, res_like from res where thread_id = "+ThreadID;
+		String sql="select res_id, res_content, res_user, res_date, res_like from res where thread_id = "+ThreadID+" order by res_date desc";
 		try{
 			
 			getConnection();
@@ -115,10 +114,10 @@ public class DBAccessor{
 			
 		return resList;
 	}
-	public void writeThread(String tname,String user){
+	public void writeThread(String tname,String user,String tag){
 		
 		String sql=
-			"insert into thread(thread_id, thread_name, thread_user) values(thread_id_seq.nextval,'"+tname+"', '"+user+"')";
+			"insert into thread(thread_id, thread_name, thread_user, tag) values(thread_id_seq.nextval,'"+tname+"', '"+user+"', '"+tag+"')";
 		
 		try{
 			
@@ -212,9 +211,14 @@ public class DBAccessor{
 		catch(Exception e){e.printStackTrace();}
 	}
 
-	public void setLike(String rid){
-		String sql="update res set res_like = res_like + 1 where res_id = "+rid;
-		
+	public void setLike(String rid, String like){
+			String sql = null;
+		if(like.equals("Good")){
+			sql="update res set res_like = res_like + 1 where res_id = "+rid;
+		}else{
+			sql="update res set res_like = res_like - 1 where res_id = "+rid;
+		}
+		System.out.println(like);
 		try{
 		getConnection();
 
@@ -231,5 +235,41 @@ public class DBAccessor{
 		}catch(SQLException e){e.printStackTrace();}
 		catch(Exception e){e.printStackTrace();}
 	}
+	/*public ArrayList<ThreadBean> getTag(String tag){
+		ArrayList<ThreadBean> thList=new ArrayList<>();
+		
+		String sql="select thread_id, thread_name, thread_user, thread_date, Tag from thread where tag = "+tag+" order by thread_date desc";
+		
+		try{
+			
+			getConnection();
+			
+			Statement st=cn.createStatement();
+			
+			ResultSet rs=st.executeQuery(sql);
+			
+			for(int i = 1; rs.next(); i++){
+				System.out.println("thread rs.next()==true");
+				ThreadBean tb=new ThreadBean();
+				System.out.println(rs.getString(1));
+				tb.setNo(i);
+				tb.setID(rs.getString(1));
+				tb.setThreadName(rs.getString(2));
+				tb.setUserName(rs.getString(3));
+				tb.setThreadDate(rs.getString(4));
+				tb.setTag(rs.getString(5));
+				thList.add(tb);
+			}
+			cn.commit();
+			
+			st.close();
+			
+			cn.close();
+		}
+		catch(SQLException e){e.printStackTrace();}
+		catch(Exception e){e.printStackTrace();}
+		
+		return thList;
+	}*/
 	
 }

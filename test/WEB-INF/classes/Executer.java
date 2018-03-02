@@ -12,11 +12,11 @@ public class Executer{
 		DBAccessor dba = new DBAccessor();
 		return dba.getRes(tID);
 	}
-	public void writeThread(String Tname, String user){
+	public void writeThread(String Tname, String user, String tag){
 		DBAccessor dba = new DBAccessor();
 		if(user == null){
-			dba.writeThread(Tname,"–¼–³‚µ‚³‚ñ");
-		}else{dba.writeThread(Tname,user);}
+			dba.writeThread(Tname,"–¼–³‚µ‚³‚ñ",tag);
+		}else{dba.writeThread(Tname,user,tag);}
 	}
 	public void writeRes(String rContent, String user, String id){
 		DBAccessor dba = new DBAccessor();
@@ -32,9 +32,8 @@ public class Executer{
 		DBAccessor dba = new DBAccessor();
 		return dba.getUser(uname, pass);
 	} 
-	
-	public void Like(String like){
+	public void Like(String rid,String like){
 		DBAccessor dba=new DBAccessor();
-		dba.setLike(like);
+		dba.setLike(rid,like);
 	}
 }
