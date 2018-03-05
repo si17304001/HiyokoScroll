@@ -6,17 +6,15 @@ create table userAccount(
 
 create table thread(
  thread_id number(7) constraint pk_thread_id primary key
-,thread_name varchar2(100) not null
-,thread_content varchar2(200)
+,thread_name varchar2(500) not null
 ,thread_user varchar2(15) constraint fk_thread_user references useraccount(user_name)
 ,thread_date date default sysdate not null
-,thread_cate varchar2(50)
 ,tag varchar2(40)
 );
 
 create table res(
  res_id number(7) constraint pk_res_id primary key
-,res_content varchar2(250) not null
+,res_content varchar2(1000) not null
 ,thread_id number(7) constraint fk_thread_id references thread(thread_id) on delete cascade
 ,res_user varchar2(15) constraint fk_res_user references useraccount(user_name)
 ,res_date date default sysdate not null
