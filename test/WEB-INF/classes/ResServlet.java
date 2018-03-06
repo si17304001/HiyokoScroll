@@ -15,9 +15,11 @@ public class ResServlet extends HttpServlet{
 
 		try{
 			String ThID = req.getParameter("id");
-
+			
+			req.setAttribute("threadname",ex.getThreadName(ThID));
+			req.setAttribute("top",ex.getTopRes(ThID));
 			req.setAttribute("res",ex.getRes(ThID));
-
+			
 			RequestDispatcher dis = req.getRequestDispatcher("/res");
 			
 			dis.forward(req, res);
@@ -36,11 +38,11 @@ public class ResServlet extends HttpServlet{
 		String user = null;
 		String T = req.getParameter("TID");
 		
+		content = content.replaceAll("<","&lt");
+		content = content.replaceAll(">","&gt");
+		content = content.replaceAll("\"","&quot");
+		content = content.replaceAll("'","&#39");
 		content = content.replaceAll("\n","<br>");
-		content = content.replaceAll("\t"," ");
-		content = content.replaceAll("<br>","");
-		content = content.replaceAll("<","");
-		
 		try{
 			if(session.getAttribute("username") != null){
 				user = session.getAttribute("username").toString();
@@ -48,6 +50,8 @@ public class ResServlet extends HttpServlet{
 			
 			if(content == ""){
 				req.setAttribute("res",ex.getRes(T));
+				req.setAttribute("threadname",ex.getThreadName(T));
+				req.setAttribute("top",ex.getTopRes(T));
 				
 				req.setAttribute("m","please enter content");
 				
@@ -61,9 +65,9 @@ public class ResServlet extends HttpServlet{
 				System.out.println("user = "+user);
 				System.out.println("Thread ID = "+T);
 				
-				
-				
 				req.setAttribute("res",ex.getRes(T));
+				req.setAttribute("threadname",ex.getThreadName(T));
+				req.setAttribute("top",ex.getTopRes(T));
 				
 				RequestDispatcher dis = req.getRequestDispatcher("/res");
 				

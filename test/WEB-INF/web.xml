@@ -30,6 +30,16 @@
   </servlet-mapping>
   
  <servlet>
+    <servlet-name>register</servlet-name>
+    <jsp-file>/Register.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  
+ <servlet>
     <servlet-name>ResServlet</servlet-name>
     <servlet-class>ResServlet</servlet-class>
   </servlet>
@@ -74,5 +84,14 @@
   <servlet-mapping>
     <servlet-name>like</servlet-name>
     <url-pattern>/LikeServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>cov</servlet-name>
+  	<jsp-file>/CoverPage.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>cov</servlet-name>
+  	<url-pattern>/cover</url-pattern>
   </servlet-mapping>
 </web-app>

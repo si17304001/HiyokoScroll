@@ -20,14 +20,21 @@ public class CreateAccountServlet extends HttpServlet{
 		Executer ex=new Executer();
 		
 		try{
-			if(p != "" || u != ""){
-				ex.addAccount(u,p);
+			if(ex.addAccount(u,p)){
 				HttpSession session = req.getSession();
 				session.setAttribute("uname",u);
-			}else{}
-			RequestDispatcher dis = req.getRequestDispatcher("/index");
+				
+				RequestDispatcher dis = req.getRequestDispatcher("/index");
 				
 				dis.forward(req, res);
+			}else{
+				req.setAttribute("ames","invalid account");
+				
+				RequestDispatcher dis = req.getRequestDispatcher("/register");
+				
+				dis.forward(req, res);
+			}
+			
 			
 		}
 		catch(Exception e){

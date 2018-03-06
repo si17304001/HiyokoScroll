@@ -81,7 +81,7 @@ public class DBAccessor{
 		
 		ArrayList<ResBean> resList=new ArrayList<>();
 		
-		String sql="select res_id, res_content, res_user, res_date, res_like from res where thread_id = "+ThreadID+" order by res_date desc";
+		String sql="select res_id, res_content, res_user, res_date, res_like from res where thread_id = "+ThreadID+" order by res_date asc";
 		try{
 			
 			getConnection();
@@ -114,10 +114,10 @@ public class DBAccessor{
 			
 		return resList;
 	}
-	public void writeThread(String tname,String user,String tag){
+	public void writeThread(String threadName,String user,String tag){
 		
 		String sql=
-			"insert into thread(thread_id, thread_name, thread_user, tag) values(thread_id_seq.nextval,'"+tname+"', '"+user+"', '"+tag+"')";
+			"insert into thread(thread_id, thread_name, thread_user, tag) values(thread_id_seq.nextval,'"+threadName+"', '"+user+"', '"+tag+"')";
 		
 		try{
 			
@@ -137,10 +137,10 @@ public class DBAccessor{
 		catch(SQLException e){e.printStackTrace();}
 		catch(Exception e){e.printStackTrace();}
 	}
-	public void writeRes(String rcontent,String user, String tID){//<--------------
+	public void writeRes(String resContent,String user, String threadID){//<--------------
 		try{
 			String sql=
-			"insert into res(res_id, res_content, thread_id, res_user) values(res_id_seq.nextval, '"+rcontent+"', "+tID+", '"+user+"')";
+			"insert into res(res_id, res_content, thread_id, res_user) values(res_id_seq.nextval, '"+resContent+"', "+threadID+", '"+user+"')";
 			
 			getConnection();
 			
@@ -176,7 +176,7 @@ public class DBAccessor{
 				rs.next();
 				System.out.println(rs.getString("user_name"));
 				ub.setUserName(rs.getString(1));
-			}catch(SQLException e){e.printStackTrace();}
+			}catch(SQLException e){e.printStackTrace(); return "";}
 				catch(Exception e){e.printStackTrace();}
 			
 			cn.commit();
@@ -190,9 +190,9 @@ public class DBAccessor{
 		
 		return ub.getUserName();
 	}
-	public void addAccount(String uname, String pass){
+	public boolean addAccount(String name, String pass){
 		
-		String sql="insert into useraccount values(user_id_seq.nextval, '"+uname+"','"+pass+"')";
+		String sql="insert into useraccount values(user_id_seq.nextval, '"+name+"','"+pass+"')";
 		try{
 
 			getConnection();
@@ -207,16 +207,18 @@ public class DBAccessor{
 			
 			cn.close();
 		}
-		catch(SQLException e){e.printStackTrace();}
+		catch(SQLException e){e.printStackTrace();
+			return false;}
 		catch(Exception e){e.printStackTrace();}
+		return true;
 	}
 
-	public void setLike(String rid, String like){
-			String sql = null;
+	public void setLike(String resID, String like){
+		String sql = null;
 		if(like.equals("Good")){
-			sql="update res set res_like = res_like + 1 where res_id = "+rid;
+			sql="update res set res_like = res_like + 1 where res_id = "+resID;
 		}else{
-			sql="update res set res_like = res_like - 1 where res_id = "+rid;
+			sql="update res set res_like = res_like - 1 where res_id = "+resID;
 		}
 		System.out.println(like);
 		try{
@@ -235,10 +237,36 @@ public class DBAccessor{
 		}catch(SQLException e){e.printStackTrace();}
 		catch(Exception e){e.printStackTrace();}
 	}
-	/*public ArrayList<ThreadBean> getTag(String tag){
-		ArrayList<ThreadBean> thList=new ArrayList<>();
+	public String getThreadName(String threadID){
 		
-		String sql="select thread_id, thread_name, thread_user, thread_date, Tag from thread where tag = "+tag+" order by thread_date desc";
+		String sql="select thread_name from thread where thread_id = "+threadID;
+		String threadname = null;
+		try{
+			getConnection();
+			
+			Statement st=cn.createStatement();
+			
+			ResultSet rs=st.executeQuery(sql);
+			
+			rs.next();
+			
+			threadname = rs.getString(1);
+			
+			cn.commit();
+			
+			st.close();
+			
+			cn.close();
+		}catch(SQLException e){e.printStackTrace();}
+		catch(Exception e){e.printStackTrace();}
+		
+		return threadname;
+	}
+	public ArrayList<ResBean> getTopRes(String threadID){
+		
+		ArrayList<ResBean> top=new ArrayList<>();
+		
+		String sql = "select res_content, res_user, res_date, res_like, res_id from res where thread_id = "+threadID+" and res_like = (select max(res_like) from res)";
 		
 		try{
 			
@@ -249,17 +277,18 @@ public class DBAccessor{
 			ResultSet rs=st.executeQuery(sql);
 			
 			for(int i = 1; rs.next(); i++){
-				System.out.println("thread rs.next()==true");
-				ThreadBean tb=new ThreadBean();
-				System.out.println(rs.getString(1));
-				tb.setNo(i);
-				tb.setID(rs.getString(1));
-				tb.setThreadName(rs.getString(2));
-				tb.setUserName(rs.getString(3));
-				tb.setThreadDate(rs.getString(4));
-				tb.setTag(rs.getString(5));
-				thList.add(tb);
+				System.out.println("resTop rs.next()=true");
+				ResBean rb = new ResBean();
+				
+				rb.setResContent(rs.getString(1));
+				rb.setResUser(rs.getString(2));
+				rb.setResDate(rs.getString(3));
+				rb.setLike(rs.getString(4));
+				rb.setResID(rs.getString(5));
+			
+				top.add(rb);
 			}
+			
 			cn.commit();
 			
 			st.close();
@@ -268,8 +297,8 @@ public class DBAccessor{
 		}
 		catch(SQLException e){e.printStackTrace();}
 		catch(Exception e){e.printStackTrace();}
-		
-		return thList;
-	}*/
-	
+			
+		return top;
+	}
+
 }
