@@ -16,24 +16,28 @@ public class LoginServlet extends HttpServlet{
 		String userName = req.getParameter("username");
 		String password = req.getParameter("pass");
 		
-		boolean login = false;
-
 		Executer ex = new Executer();
-		UserBean ub = new UserBean();
 		String user = ex.getUser(userName,password);
 		System.out.println("getUser = "+user);
-		if(user != null){
-			login = true;
-		}
-			if(login){
+
+			if(user != ""){
 				HttpSession session = req.getSession();
 				session.setAttribute("uname",userName);
-			}else{RequestDispatcher dis = req.getRequestDispatcher("login");
+				
+				RequestDispatcher dis = req.getRequestDispatcher("index");
+				
+				dis.forward(req, res);
+				
+			}else{
+				
+				req.setAttribute("lmes","wrong username or password!!");
+				
+				RequestDispatcher dis = req.getRequestDispatcher("login");
+				
 				dis.forward(req, res);
 			}
 
-			RequestDispatcher dis = req.getRequestDispatcher("index");
-			dis.forward(req, res);
+			
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -42,7 +46,7 @@ public class LoginServlet extends HttpServlet{
 		HttpSession session = req.getSession(false);
 		session.invalidate();
 		
-		RequestDispatcher dis = req.getRequestDispatcher("index");
+		RequestDispatcher dis = req.getRequestDispatcher("cover");
 		dis.forward(req, res);
 	}
 }

@@ -42,6 +42,11 @@ public class ThreadServlet extends HttpServlet{
 			user = session.getAttribute("username").toString();
 		}else{}
 		
+		Tname = Tname.replaceAll("<","&lt");
+		Tname = Tname.replaceAll(">","&gt");
+		Tname = Tname.replaceAll("\"","&quot");
+		Tname = Tname.replaceAll("'","&#39");
+		
 		Executer ex=new Executer();
 		System.out.println("Tname = "+Tname);
 		System.out.println("user = "+user);

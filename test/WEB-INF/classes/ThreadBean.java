@@ -32,8 +32,8 @@ public class ThreadBean{
 	public void setID(String ID){
 		this.ID = ID;
 	}
-	public void setThreadName(String Threadname){
-		this.threadName=Threadname;
+	public void setThreadName(String ThreadName){
+		this.threadName=ThreadName;
 	}
 	public void setUserName(String threadUser){
 		this.threadUser=threadUser;

@@ -1,0 +1,181 @@
+body {
+		margin: 0px auto;
+		background-color: #535c75;
+}
+/*-------------Page Layout------------*/
+header{
+	margin-top:0px auto;
+	background-color: #69aaff;
+	padding: 10px;
+	height: 87px;
+}
+#Main {
+	margin:0px auto;
+	padding:7px;
+}
+#postform {
+	margin:0px auto;
+	padding:7px;
+}
+
+/*----------------Header--------------*/
+.menu {
+	display: table;
+	/*position: fixed;*/
+	text-align: center;
+}
+header #user{
+	float: left;
+	margin-top: 0px;
+	margin-left: 5px;
+}
+header #user h3 > a {
+ 	color: #ffffff;
+	font-family: sans-serif;
+	font-size: 100%;
+	transition: font-size 1s;
+}
+header #user h3 > a:hover{
+	color: #666666;
+	font-size: 120%;
+}
+header #user h3 > a:active {
+	position:relative;
+	right: 3px;
+	bottom: 3px;
+}
+/*-----------------Main---------------*/
+#Main .res table {
+	color: #ffffff;
+	font-family: sans-serif;
+	font-size: 110%;
+	text-align: left;
+	width: 60%;
+	table-layout: auto;
+}
+#Main .res > p{
+	color: #ffffff;
+	font-family: sans-serif;
+	font-size: 130%;
+	line-height: 2;
+}
+table#thread{
+	margin-left: auto;
+	margin-right: auto;
+	color: #ffffff;
+	font-family: sans-serif;
+	font-size: 130%;
+	line-height: 2;
+}
+table#thread tr:hover{
+	background-color:#333c55;
+}
+
+/*--------------Post Form-------------*/
+
+h2 {
+ 	color: #ffffff;
+	font-family: sans-serif;
+	line-height: 2;
+}
+#postform input[type="text"] {
+	width: 100px;
+	background-color: #a8a8a8;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	transition: all 1s ease-in-out;
+}
+#postform input[type="text"]:focus {
+	width: 300px;
+	background-color: #f8f8f8;
+}
+#postform textarea{
+	width: 200px;
+	height: 50px;
+	resize: none;
+	padding: 5px 10px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #a8a8a8;
+	font-size:1.5em;
+	transition: all 1.5s ease-out;
+}
+#postform textarea:focus {
+	width: 70%;
+	height: 30%;
+	background-color: #f8f8f8;
+}
+/*-----------Other----------*/
+#pref-search{
+	float: right;
+}
+
+h1 {
+	margin-left: auto;
+	margin-right: auto;
+	color: #ffffff;
+	font-family: sans-serif;
+	line-height: 4;
+}
+a { 
+	color:#69aaff;
+	text-decoration: none
+}
+a:hover {
+	color:#fff;
+}
+/*-------button------------*/
+input[type="submit"] {
+	position: relative;
+	margin-top: 20;
+	background-color:#69aaff;
+	border-radius: 4px;
+	color: #fff;
+	transition: none;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+input[type="submit"]:active {
+	top: 3px;
+	box-shadow: none;
+}
+#good{
+	width: 60px;
+	height: 35px;
+	background: rgba(102, 204, 255,0.3) url("../image/good.png") no-repeat;
+	color: green;
+	transition: all 1s;
+}
+#good:hover{
+	width: 130px;
+	height: 100px;
+	color: black;
+	background: rgb(70, 255, 70) url("../image/good1.png") no-repeat;
+}
+#bad{
+	width: 60px;
+	height: 35px;
+	background: rgba(102, 204, 255,0.3) url("../image/bad.png") no-repeat;
+	color: red;
+	transition: all 1s;
+}
+#bad:hover{
+	width: 130px;
+	height: 100px;
+	color: black;
+	background: rgb(255, 51, 51) url("../image/bad1.png") no-repeat;
+}
+/*------------------CoverPage----------------*/
+#start h1{
+	width: 500px;
+	padding: 5px 10px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	transition: width 1.5s;
+}
+#start h1:hover{
+	width: 100%;
+}

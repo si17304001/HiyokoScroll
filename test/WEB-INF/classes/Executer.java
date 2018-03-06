@@ -4,36 +4,45 @@ import java.util.ArrayList;
 
 
 public class Executer{
+	private DBAccessor dba=new DBAccessor();
 	public ArrayList<ThreadBean> getThread(){
-		DBAccessor dba = new DBAccessor();
+		dba.createConnection();
 		return dba.getThread();
 	}
-	public ArrayList<ResBean> getRes(String tID){
-		DBAccessor dba = new DBAccessor();
-		return dba.getRes(tID);
+	public ArrayList<ResBean> getRes(String threadID){
+		dba.createConnection();
+		return dba.getRes(threadID);
 	}
-	public void writeThread(String Tname, String user, String tag){
-		DBAccessor dba = new DBAccessor();
+	public String getThreadName(String threadID){
+		dba.createConnection();
+		return dba.getThreadName(threadID);
+	}
+	public void writeThread(String threadName, String user, String tag){
+		dba.createConnection();
 		if(user == null){
-			dba.writeThread(Tname,"–¼–³‚µ‚³‚ñ",tag);
-		}else{dba.writeThread(Tname,user,tag);}
+			dba.writeThread(threadName,"–¼–³‚µ‚³‚ñ",tag);
+		}else{dba.writeThread(threadName,user,tag);}
 	}
-	public void writeRes(String rContent, String user, String id){
-		DBAccessor dba = new DBAccessor();
+	public void writeRes(String resContent, String user, String ID){
+		dba.createConnection();
 		if(user == null){
-			dba.writeRes(rContent, "–¼–³‚µ‚³‚ñ", id);
-		}else{dba.writeRes(rContent,user,id);}
+			dba.writeRes(resContent, "–¼–³‚µ‚³‚ñ", ID);
+		}else{dba.writeRes(resContent,user,ID);}
 	}
-	public void addAccount(String user, String pass){
-		DBAccessor dba = new DBAccessor();
-		dba.addAccount(user,pass);
+	public boolean addAccount(String user, String pass){
+		dba.createConnection();
+		return dba.addAccount(user,pass);
 	}
-	public String getUser(String uname, String pass){
-		DBAccessor dba = new DBAccessor();
-		return dba.getUser(uname, pass);
+	public String getUser(String name, String pass){
+		dba.createConnection();
+		return dba.getUser(name, pass);
 	} 
-	public void Like(String rid,String like){
-		DBAccessor dba=new DBAccessor();
-		dba.setLike(rid,like);
+	public void Like(String resID,String like){
+		dba.createConnection();
+		dba.setLike(resID,like);
+	}
+	public ArrayList<ResBean> getTopRes(String threadID){
+		dba.createConnection();
+		return dba.getTopRes(threadID);
 	}
 }
