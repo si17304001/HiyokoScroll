@@ -74,10 +74,14 @@
 		<div id="pref-search">
 			<select id ="tag-select" class ="form-control">
 				<option value ="">全て表示</option>
+				<option value ="エンタメ">エンタメ</option>
+				<option value ="スポーツ">スポーツ</option>
+				<option value ="ライフスタイル">ライフスタイル</option>
 				<option value ="ゲーム">ゲーム</option>
-				<option value ="雑談">雑談</option>
 				<option value ="アニメ">アニメ</option>
+				<option value ="雑談">雑談</option>
 				<option value ="その他">その他</option>
+				<option value ="意見要望">意見要望</option>
 			</select>
 		<input type="button" value="絞り込みクリア" onclick="koshin()">
 	
@@ -103,10 +107,14 @@
 		<center><form method="post" action="ThreadServlet">
 			<h2>新しいスレッドを作成する</h2>
 			<select name="tag">
-				<option value ="雑談">雑談</option>
+				<option value ="エンタメ">エンタメ</option>
+				<option value ="スポーツ">スポーツ</option>
+				<option value ="ライフスタイル">ライフスタイル</option>
 				<option value ="ゲーム">ゲーム</option>
 				<option value ="アニメ">アニメ</option>
-				<option value ="その他" selected="selected">その他</option>
+				<option value ="雑談">雑談</option>
+				<option value ="その他" selected = "selected">その他</option>
+				<option value ="意見要望">意見要望</option>
 			</select>
 			<input type="text" name="Tname"/>&nbsp;<input type="submit" value="作成"><span style='color:red'>${m}</span>
 		</form><center>
