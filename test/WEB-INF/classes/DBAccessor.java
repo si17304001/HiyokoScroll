@@ -21,7 +21,7 @@ public class DBAccessor{
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			cn=DriverManager.getConnection
-	 	 	 ("jdbc:oracle:thin:@localhost:1521:orcl","info","pro");
+		 	 ("jdbc:oracle:thin:@localhost:1521:orcl","info","pro");
 			System.out.println("DBConected");
 			cn.setAutoCommit(false);
 			
@@ -44,7 +44,7 @@ public class DBAccessor{
 		
 		ArrayList<ThreadBean> thList=new ArrayList<>();
 		
-		String sql="select thread_id, thread_name, thread_user, thread_date, tag from thread order by thread_date desc";
+		String sql="select thread_id, thread_name, thread_user, to_char(thread_date,'YYYY/MM/DD HH24:MI:SS'), tag from thread order by thread_date desc";
 		
 		try{
 			
@@ -81,7 +81,7 @@ public class DBAccessor{
 		
 		ArrayList<ResBean> resList=new ArrayList<>();
 		
-		String sql="select res_id, res_content, res_user, res_date, res_like from res where thread_id = "+ThreadID+" order by res_date asc";
+		String sql="select res_id, res_content, res_user, to_char(res_date,'YYYY/MM/DD HH24:MI:SS'), res_like from res where thread_id = "+ThreadID+" order by res_date asc";
 		try{
 			
 			getConnection();
@@ -266,7 +266,7 @@ public class DBAccessor{
 		
 		ArrayList<ResBean> top=new ArrayList<>();
 		
-		String sql = "select res_content, res_user, res_date, res_like, res_id from res where thread_id = "+threadID+" and res_like = (select max(res_like) from res)";
+		String sql = "select res_content, res_user, to_char(res_date,'YYYY/MM/DD HH24:MI:SS'), res_like, res_id from res where thread_id = "+threadID+" and res_like = (select max(res_like) from res)";
 		
 		try{
 			
@@ -276,18 +276,18 @@ public class DBAccessor{
 			
 			ResultSet rs=st.executeQuery(sql);
 			
-			for(int i = 1; rs.next(); i++){
-				System.out.println("resTop rs.next()=true");
-				ResBean rb = new ResBean();
-				
-				rb.setResContent(rs.getString(1));
-				rb.setResUser(rs.getString(2));
-				rb.setResDate(rs.getString(3));
-				rb.setLike(rs.getString(4));
-				rb.setResID(rs.getString(5));
+			rs.next();
+			System.out.println("resTop rs.next()=true");
+			ResBean rb = new ResBean();
 			
-				top.add(rb);
-			}
+			rb.setResContent(rs.getString(1));
+			rb.setResUser(rs.getString(2));
+			rb.setResDate(rs.getString(3));
+			rb.setLike(rs.getString(4));
+			rb.setResID(rs.getString(5));
+			
+			top.add(rb);
+			
 			
 			cn.commit();
 			
@@ -300,5 +300,34 @@ public class DBAccessor{
 			
 		return top;
 	}
-
+	public String getUserID(String name){
+		
+		String sql = "select user_id from useraccount where user_name = '"+name+"'";
+		
+		String UserID = null;
+		
+		try{
+			
+			getConnection();
+			
+			Statement st=cn.createStatement();
+			
+			ResultSet rs=st.executeQuery(sql);
+			
+			rs.next();
+			
+			UserID = rs.getString(1);
+			
+			
+			cn.commit();
+			
+			st.close();
+			
+			cn.close();
+		}
+		catch(SQLException e){e.printStackTrace();}
+		catch(Exception e){e.printStackTrace();}
+			
+		return UserID;
+	}
 }

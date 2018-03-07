@@ -18,7 +18,17 @@ public class CreateAccountServlet extends HttpServlet{
 		String p = req.getParameter("pass");
 		
 		Executer ex=new Executer();
+		u = u.replaceAll("<","&lt");
+		u = u.replaceAll(">","&gt");
+		u = u.replaceAll("\"","&quot");
+		u = u.replaceAll("'","&#39");
+		u = u.replaceAll("\n","<br>");
 		
+		p = p.replaceAll("<","&lt");
+		p = p.replaceAll(">","&gt");
+		p = p.replaceAll("\"","&quot");
+		p = p.replaceAll("'","&#39");
+		p = p.replaceAll("\n","<br>");
 		try{
 			if(ex.addAccount(u,p)){
 				HttpSession session = req.getSession();
@@ -28,7 +38,7 @@ public class CreateAccountServlet extends HttpServlet{
 				
 				dis.forward(req, res);
 			}else{
-				req.setAttribute("ames","invalid account");
+				req.setAttribute("ames","そのユーザーIDは使われています");
 				
 				RequestDispatcher dis = req.getRequestDispatcher("/register");
 				

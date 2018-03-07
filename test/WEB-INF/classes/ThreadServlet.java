@@ -55,7 +55,7 @@ public class ThreadServlet extends HttpServlet{
 			
 			req.setAttribute("thread",ex.getThread());
 			
-			req.setAttribute("m","please enter thread name");
+			req.setAttribute("m","ƒXƒŒƒbƒh–¼‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
 			
 			RequestDispatcher dis = req.getRequestDispatcher("/index");
 			

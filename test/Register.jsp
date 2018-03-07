@@ -18,9 +18,10 @@
 		</div>
 	</header>
 	<center><h1>新規アカウント作成</h1><form method="post" action="ca">
-		<h2>ユーザーID</h2><input type="text"  name="user" pattern=".{5,20}" required><br>
+		<h2>ユーザーID</h2><input type="text" name="user" pattern=".{5,20}" required><br>
 		<h2>パスワード</h2><input type="password" name="pass" pattern=".{5,20}" required><br>
 		<input type="submit" value="登録" ><span style='color:red'>${ames}</span>
 	</form></center>
+	
 </body>
 </html>
