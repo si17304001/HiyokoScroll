@@ -56,7 +56,7 @@
 			<% if(session.getAttribute("uname")==null){ %>
 				<h3><a href="login">ログイン</a><br/><a href="register">新規アカウント作成</a></h3>
 			<% }else{ %>
-				<h3>Welcome ${sessionScope.uname}</h3>
+				<h3>ようこそ ${sessionScope.uname}さん！</h3>
 				<form method="get" action="LoginServlet">
 					<input type="submit" value="logout">
 				</form>
@@ -69,7 +69,7 @@
 			<a href="#postform"> <img src="image/suretate.jpg"width=7% align="right" margin=1%></a>
 		</div>
 	</header>
-	
+	<br>
 	<div id="Main">
 		<div id="pref-search">
 			<select id ="tag-select" class ="form-control">
@@ -86,12 +86,11 @@
 		
 		<table id="thread">
 	
-			<tr><th>No</th><th>ID</th><th>スレッド名</th><th>ユーザー名</th><th>日付</th><th>タグ</th></tr>
+			<tr><th>No</th><th>スレッド名</th><th>ユーザー名</th><th>日付</th><th>タグ</th></tr>
 			<% if(request.getAttribute("thread")==null){
 			response.sendRedirect("ThreadServlet");} %>
 		<tbody><c:forEach var="thread" items="${thread}">
 				<tr><td>${thread.getNo()}&nbsp;&nbsp;</td>
-				<td>${thread.ID}&nbsp;&nbsp;</td>
 				<td><a href="ResServlet?id=${thread.ID}" method='get'>${thread.threadName}&nbsp;&nbsp;</a></td>
 				<td>${thread.getThreadUser()}&nbsp;&nbsp;</td>
 				<td>${thread.threadDate}&nbsp;&nbsp;</td>

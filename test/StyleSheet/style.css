@@ -59,6 +59,22 @@ header #user h3 > a:active {
 	font-size: 130%;
 	line-height: 2;
 }
+
+#Main .top table {
+	color: #99ebff;
+	font-family: sans-serif;
+	font-size: 140%;
+	text-align: left;
+	width: 60%;
+	table-layout: auto;
+}
+#Main .top > p{
+	color: #99ebff;
+	font-family: sans-serif;
+	font-size: 170%;
+	line-height: 2;
+}
+
 table#thread{
 	margin-left: auto;
 	margin-right: auto;

@@ -28,7 +28,7 @@
 			<% if(session.getAttribute("uname")==null){ %>
 				<h3><a href="login">ログイン</a><br/><a href="register">新規アカウント作成</a></h3>
 			<% }else{ %>
-				<h3>Welcome ${sessionScope.uname}</h3>
+				<h3>ようこそ ${sessionScope.uname}さん！</h3>
 				<form method="get" action="LoginServlet">
 					<input type="submit" value="logout">
 				</form>
@@ -38,20 +38,20 @@
 		<div class="menu">
 			<a href="index"><img src="image/top.jpg"width=40%></a>
 			<a href="index"><img src="image/home.png" height="80px"></a>
-			<a href="#postform"> <img src="image/suretate.jpg"width=7% align="right" margin=1%></a>
+			<a href="#postform"> <img src="image/newres.png"width=7% align="right" margin=1%></a>
 		</div>
 	</header>
 	<!--ThreadID&Name-->
 	<strong style="float: right; margin-right: 10px;">スレッドID : <% request.getAttribute("id"); %>${param.id}</strong>
 	
-	<center><h1>${threadname}</h1></center>
+	<center><h1>スレッド名：${threadname}</h1></center>
 	
 	<!--Res-->
 	<div id="Main">
-		<div class="res">
-			<c:forEach var="top" items="${top}">
+		<c:forEach var="top" items="${top}">
+			<div class="top">
 				<table>
-					<tr><th>トップレス</th><th>${top.getResUser()}</th><th>${top.getResDate()}</th><th>Good:${top.getLike()}</th></tr>
+					<tr><th>トップレス</th><th>${top.getResUser()}</th><th>${top.getResDate()}</th><th>Like:${top.getLike()}</th></tr>
 				</table>
 				<p>${top.getResContent()}</p>
 				</div>
@@ -70,7 +70,7 @@
 		<c:forEach var="res" items="${res}">
 			<div class="res">
 				<table>
-					<tr><th>レスNO.${res.getNo()}</th><th>${res.resUser}</th><th>${res.resDate}</th><th>Good:${res.getLike()}</th></tr>
+					<tr><th>レスNO.${res.getNo()}</th><th>${res.resUser}</th><th>${res.resDate}</th><th>Like:${res.getLike()}</th></tr>
 				</table>
 				<p>${res.getResContent()}</p>
 			</div>
@@ -94,7 +94,7 @@
 	   <form action='ResServlet?id=${param.id}'  method="post">
 	   		<textarea cols="50" rows="5" name="content"></textarea>
 	   		<input type="hidden" name="TID" value='${param.id}'><br/>
-	   		<input type="submit" value="post"><span style='color:red'>${m}</span>
+	   		<input type="submit" value="送信"><span style='color:red'>${m}</span>
 	   </form>
 	   </div>
 </body>

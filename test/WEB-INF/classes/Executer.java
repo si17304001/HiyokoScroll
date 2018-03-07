@@ -45,4 +45,8 @@ public class Executer{
 		dba.createConnection();
 		return dba.getTopRes(threadID);
 	}
+	public String getUserID(String name){
+		dba.createConnection();
+		return dba.getUserID(name);
+	}
 }

@@ -53,7 +53,7 @@ public class ResServlet extends HttpServlet{
 				req.setAttribute("threadname",ex.getThreadName(T));
 				req.setAttribute("top",ex.getTopRes(T));
 				
-				req.setAttribute("m","please enter content");
+				req.setAttribute("m","“à—e‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
 				
 				RequestDispatcher dis = req.getRequestDispatcher("/res");
 				

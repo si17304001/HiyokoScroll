@@ -12,14 +12,27 @@ import javax.servlet.RequestDispatcher;
 public class LoginServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 	throws ServletException, IOException{
+		req.setCharacterEncoding("Windows-31J");
 		
 		String userName = req.getParameter("username");
 		String password = req.getParameter("pass");
 		
+		userName = userName.replaceAll("<","&lt");
+		userName = userName.replaceAll(">","&gt");
+		userName = userName.replaceAll("\"","&quot");
+		userName = userName.replaceAll("'","&#39");
+		userName = userName.replaceAll("\n","<br>");
+		
+		password = password.replaceAll("<","&lt");
+		password = password.replaceAll(">","&gt");
+		password = password.replaceAll("\"","&quot");
+		password = password.replaceAll("'","&#39");
+		password = password.replaceAll("\n","<br>");
+		
 		Executer ex = new Executer();
 		String user = ex.getUser(userName,password);
 		System.out.println("getUser = "+user);
-
+		
 			if(user != ""){
 				HttpSession session = req.getSession();
 				session.setAttribute("uname",userName);
@@ -30,7 +43,7 @@ public class LoginServlet extends HttpServlet{
 				
 			}else{
 				
-				req.setAttribute("lmes","wrong username or password!!");
+				req.setAttribute("lmes","ユーザーIDまたはパスワードが違います！");
 				
 				RequestDispatcher dis = req.getRequestDispatcher("login");
 				

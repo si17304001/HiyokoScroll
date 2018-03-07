@@ -1,0 +1,87 @@
+     
+      <ul id="nav1">
+	<li><a></a></li>
+	<li> <% if(session.getAttribute("uname")==null){ %>
+		<h3><a href="login"><span>ログイン</span></a><br/><a href="Register.html"><span>新規アカウント作成</span></a></h3>
+	<% }else{ %>
+		<span>${sessionScope.uname}</span>
+		<form method="get" action="LoginServlet">
+		<span><input type="submit" value="logout"></span>
+		</form>
+		<% session.setAttribute("username",session.getAttribute("uname")); %>
+	<% } %></li>
+	<li></li>
+	<li></li>
+</ul>
+<script>
+$(function() {
+	 $('#nav1').hover(
+		function(){
+			$(this).find('span').stop().animate({'marginRight':'175px'},500);
+		},
+		function () {
+			$(this).find('span').stop().animate({'marginRight':'0px'},300);
+		}
+	);
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<style>
+ul#nav1 {
+	font-size: 100%;
+	font-weight: bold;
+	list-style: none;
+	position:fixed;
+	top:20px;
+	right:-150px;
+	margin:0;
+}
+#nav1 li {
+	margin-bottom: 0.8em;
+}
+#nav1 li a {
+	text-decoration: none;
+	color: #333333;
+	display:block;
+	background-repeat:no-repeat;
+	height:64px;
+	padding-left:70px;
+	line-height:64px;	
+}
+#nav1 li a:hover {
+	color: #FF9900;
+}
+#nav1 .twitter{
+	background-image:url(twitter.png);
+}
+#nav1 .facebook{
+	background-image:url(facebook.png);
+}
+#nav1 .youtube{
+	background-image:url(youtube.png);
+}
+#nav1 .rss{
+	background-image:url(rss.png);
+}
+</style>

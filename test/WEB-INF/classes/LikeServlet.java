@@ -16,12 +16,12 @@ public class LikeServlet extends HttpServlet{
 		Executer ex=new Executer();
 		HttpSession session = req.getSession(false);
 		
-		String user = session.getAttribute("username").toString();
+		String userID = ex.getUserID(session.getAttribute("username").toString());
 		String rID = req.getParameter("rID");
 		String ThID = req.getParameter("id");
 		String like = req.getParameter("like");
 		boolean check = true;
-		Cookie userck = new Cookie(rID,user);
+		Cookie userck = new Cookie(rID,userID);
 		
 		Cookie[] cks = req.getCookies();
 		if(cks != null){
@@ -29,7 +29,7 @@ public class LikeServlet extends HttpServlet{
 				Cookie ck = cks[i];
 				System.out.println("name = "+ck.getName()+" value ="+ck.getValue());
 				if(rID.equals(ck.getName())){
-					if(user.equals(ck.getValue())){
+					if(userID.equals(ck.getValue())){
 						check = false;
 					}
 				}
@@ -40,6 +40,7 @@ public class LikeServlet extends HttpServlet{
 				ex.Like(rID,like);
 				res.addCookie(userck);
 				req.setAttribute("threadname",ex.getThreadName(ThID));
+				req.setAttribute("top",ex.getTopRes(ThID));
 				req.setAttribute("res",ex.getRes(ThID));
 				
 				RequestDispatcher dis = req.getRequestDispatcher("/res");

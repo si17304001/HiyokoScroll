@@ -70,7 +70,7 @@ document.write("cookieが使用できません。".fontcolor("red")+"<br>");
 
 	<div id="start">
 		<center><h1><a href="login">ログイン</a></h1><br/>
-		<h1><a href="Register.html">新規アカウント作成</a></h1><br>
+		<h1><a href="register">新規アカウント作成</a></h1><br>
 		<h1><a href="index">トップページへ</a></h1><center>
 	</div>
 </body>
