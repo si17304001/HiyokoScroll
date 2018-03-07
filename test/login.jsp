@@ -17,7 +17,7 @@
 	</header>
 	<center><h1>ログイン</h1>
 	<form method="post" action="LoginServlet">
-		<h2>ユーザーID</h2><t><input type="text" name="username" pattern=".{5,20}" required><br/>
+		<h2>ユーザー名</h2><t><input type="text" name="username" pattern=".{5,20}" required><br/>
 		<h2>パスワード<h2><t><input type="password" name="pass" pattern=".{5,20}" required></br>
 		<input type="submit" value="ログイン"><span style='color:red'>${lmes}</span>
 	</form>

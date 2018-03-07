@@ -18,7 +18,8 @@ create table res(
 ,thread_id number(7) constraint fk_thread_id references thread(thread_id) on delete cascade
 ,res_user varchar2(15) constraint fk_res_user references useraccount(user_name)
 ,res_date date default sysdate not null
-,res_like number(3) default 0
+,res_good number(3) default 0
+,res_bad number(3) default 0
 );
 
 create sequence thread_id_seq start with 1 increment by 1;

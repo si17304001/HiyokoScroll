@@ -7,6 +7,8 @@ public class ResBean{
 	private String resUser;
 	private String resDate;
 	private String like;
+	private String Good;
+	private String Bad;
 	
 	public int getNo(){
 		return No;
@@ -26,6 +28,12 @@ public class ResBean{
 	public String getLike(){
 		return like;
 	}
+	public String getGood(){
+		return Good;
+	}
+	public String getBad(){
+		return Bad;
+	}
 	public void setNo(int No){
 		this.No=No;
 	}
@@ -43,5 +51,11 @@ public class ResBean{
 	}
 	public void setLike(String likeCount){
 		this.like=likeCount;
+	}
+	public void setGood(String Good){
+		this.Good=Good;
+	}
+	public void setBad(String Bad){
+		this.Bad=Bad;
 	}
 }

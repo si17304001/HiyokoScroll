@@ -81,7 +81,7 @@ public class DBAccessor{
 		
 		ArrayList<ResBean> resList=new ArrayList<>();
 		
-		String sql="select res_id, res_content, res_user, to_char(res_date,'YYYY/MM/DD HH24:MI:SS'), res_like from res where thread_id = "+ThreadID+" order by res_date asc";
+		String sql="select res_id, res_content, res_user, to_char(res_date,'YYYY/MM/DD HH24:MI:SS'), res_good - res_bad, res_good, res_bad from res where thread_id = "+ThreadID+" order by res_date asc";
 		try{
 			
 			getConnection();
@@ -100,6 +100,8 @@ public class DBAccessor{
 				rb.setResUser(rs.getString(3));
 				rb.setResDate(rs.getString(4));
 				rb.setLike(rs.getString(5));
+				rb.setGood(rs.getString(6));
+				rb.setBad(rs.getString(7));
 				
 				resList.add(rb);
 			}
@@ -216,9 +218,9 @@ public class DBAccessor{
 	public void setLike(String resID, String like){
 		String sql = null;
 		if(like.equals("Good")){
-			sql="update res set res_like = res_like + 1 where res_id = "+resID;
+			sql="update res set res_good = res_good + 1 where res_id = "+resID;
 		}else{
-			sql="update res set res_like = res_like - 1 where res_id = "+resID;
+			sql="update res set res_bad = res_bad + 1 where res_id = "+resID;
 		}
 		System.out.println(like);
 		try{
@@ -266,7 +268,8 @@ public class DBAccessor{
 		
 		ArrayList<ResBean> top=new ArrayList<>();
 		
-		String sql = "select res_content, res_user, to_char(res_date,'YYYY/MM/DD HH24:MI:SS'), res_like, res_id from res where thread_id = "+threadID+" and res_like = (select max(res_like) from res)";
+		String sql = 
+		"select res_content, res_user, to_char(res_date,'YYYY/MM/DD HH24:MI:SS'), res_good - res_bad , res_id from res where thread_id = "+threadID+" and res_good - res_bad = (select max(res_good - res_bad) from res where thread_id = "+threadID+")";
 		
 		try{
 			
@@ -280,14 +283,13 @@ public class DBAccessor{
 			System.out.println("resTop rs.next()=true");
 			ResBean rb = new ResBean();
 			
-			rb.setResContent(rs.getString(1));
-			rb.setResUser(rs.getString(2));
+			rb.setResContent(rs.getString("res_content"));
+			rb.setResUser(rs.getString("res_user"));
 			rb.setResDate(rs.getString(3));
 			rb.setLike(rs.getString(4));
-			rb.setResID(rs.getString(5));
+			rb.setResID(rs.getString("res_id"));
 			
 			top.add(rb);
-			
 			
 			cn.commit();
 			

@@ -70,7 +70,8 @@
 		<c:forEach var="res" items="${res}">
 			<div class="res">
 				<table>
-					<tr><th>ƒŒƒXNO.${res.getNo()}</th><th>${res.resUser}</th><th>${res.resDate}</th><th>Like:${res.getLike()}</th></tr>
+					<tr><th>ƒŒƒXNO.${res.getNo()}</th><th>${res.resUser}</th><th>${res.resDate}</th><th>Like:${res.getLike()}</th>
+					<th><span style="color:rgb(70, 255, 70)">Good:${res.getGood()}</span></th><th><span style="color:rgb(255, 51, 51)">Bad:${res.getBad()}</span></th></tr>
 				</table>
 				<p>${res.getResContent()}</p>
 			</div>
